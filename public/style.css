@@ -11,3 +11,15 @@
 .card{
     min-height: 100px;
 }
+.username{
+    font-weight: bold;
+    text-align: right;
+    width: 100px;
+}
+.message{
+    color: skyblue;
+  margin-left: 20px;
+}
+#message-block, .message-block{
+    display: inline-flex
+}

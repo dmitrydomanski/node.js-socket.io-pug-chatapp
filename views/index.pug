@@ -9,8 +9,12 @@ block content
      br
      #chat
        #status
-       .card
-        #messages.card-block
+       .card#message-container
+        each message, i in messages
+         #message-block
+          .username #{message.username}:
+          .message #{message.message}
+         #messages.card-block
        br
        input#username.form-control(type='text', placeholder='Enter name...')
        br

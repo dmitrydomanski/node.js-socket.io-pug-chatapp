@@ -14,7 +14,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 //connect to the database
-mongoose.connect('mongodb://localhost/socketchat', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/socketchat', {
+    useNewUrlParser: true
+});
 let db = mongoose.connection;
 
 //check db connection
@@ -29,18 +31,31 @@ let User = require('./models/user');
 
 //app.use(express.static('public'));
 
+app.get('/', (req, res) => {
+    Message.find({}, (err, messages) => {
+        if (err) {
+            throw err;
+        }
+        res.render('index', {
+            messages: messages
+        });
+    })
+});
+
 const io = socket(server);
 io.on('connection', (socket) => {
 
     console.log('socket conection established', socket.id)
 
-    app.get('/', (req, res) => {
-        res.render('index');
-    });
-
     // catch chat message
     socket.on('input', (data) => {
-        io.sockets.emit('input', data);
+        let message = new Message();
+        message.username = data.username;
+        message.message = data.message;
+        message.timestamp = Date.now();
+        Message(message).save().then(_=>
+            io.sockets.emit('output', data)
+        );
     });
 
     //catch typing

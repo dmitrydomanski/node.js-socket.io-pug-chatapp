@@ -29,9 +29,11 @@ textarea.addEventListener('keypress', () => {
 })
 
 // listen for chat event
-socket.on('input', (data) => {
-    const msgText = `<div><strong> ${data.username}: </strong> ${data.message}</div> `
+socket.on('output', (data) => {
+    const msgText = `<div class="username"> ${data.username}: </div><div class="message">${data.message}</div> `
     messages.innerHTML += msgText
+    messages.classList.add('message-block');
+    element('message-container').appendChild(messages);
     textarea.value = '';
     status.innerText = '';
 })
