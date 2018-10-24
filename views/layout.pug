@@ -1,0 +1,29 @@
+doctype html
+html
+ head
+  title nodeKB
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
+  link(rel='stylesheet' href='/style.css')
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js")
+  
+ body
+  .container
+  nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+    a.navbar-brand(href='/') Java_22 Custom chat
+     ul.nav.navbar-nav.right
+      li.nav-item
+       a.nav-link(href='/users/register') Register
+      li.nav-item
+       a.nav-link(href='/users/login') Login
+  .container
+    br
+    block content
+    br
+    hr
+    footer
+     p Copyright &copy; 2018
+
+ script(src="/client.js")
+ script(src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous")

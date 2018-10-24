@@ -1,0 +1,13 @@
+.right{
+    margin-left: auto;
+}
+
+.nav-item{
+    display: inherit;
+}
+.btn{
+    margin-left: 20px;
+}
+.card{
+    min-height: 100px;
+}

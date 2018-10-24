@@ -1,9 +1,7 @@
 // Make connection
-
 const socket = io.connect('http://localhost:4000');
 
 // Query DOM
-
 function element(id) {
     return document.getElementById(id);
 }
@@ -32,12 +30,13 @@ textarea.addEventListener('keypress', () => {
 
 // listen for chat event
 socket.on('input', (data) => {
-    status.innerHTML = '';
-    messages.innerHTML += '<p><strong>' + data.username + ':</strong>' + data.message + '</p>'
+    const msgText = `<div><strong> ${data.username}: </strong> ${data.message}</div> `
+    messages.innerHTML += msgText
     textarea.value = '';
+    status.innerText = '';
 })
 
 // listen for typing event
 socket.on('typing', (data) => {
-    status.innerHTML = '<p><em>' + data + ' is typing a message...' + '</em></p>'
+    status.innerText =  data + ' is typing a message...'
 })
